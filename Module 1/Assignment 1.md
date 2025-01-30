@@ -24,3 +24,21 @@ mode what are some consequences?
         - Loss of Process Isolation: Normally, user programs are confined within separate process boundaries to prevent interference with other processes. Running in kernel mode removes these boundaries, allowing the program to access or modify other processes’ data.
         - Process Table Manipulation: The user program can modify the kernel’s process table, giving it control over other processes, leading to data corruption or even system takeover.
         - System Instability: A buggy user program running in kernel mode can crash the entire OS, since there are no safeguards preventing it from executing unsafe operations.
+### Q2 : Define three styles of switching from user mode to supervisor mode.
+      
+     1. Using system call: When you use function like printf() --> at runtime it calls system call like write() and CPU switches to kernel mode to process. Also we can directly use write(),open(),close(),fork() to switch to a kernel mode.
+     2. When your processor encounters any Eception or error, it switches to kernel mode to handle it. Also, when using mouse, keyboard when you hit the close button on a file, app. The processor switches to kernel mode to close the app.
+     3. Direct Kernel Invokation: A direct jump to kernel mode is an unsafe method where a user program manipulates jump addresses to enter kernel mode without a system call or interrupt.
+
+   🔹 How it Works:
+
+    The user program modifies a function pointer or jump address to execute kernel code.
+    This can be done through kernel exploits (buffer overflows, pointer overwrites).
+    Modern OSes prevent this using protections like Kernel Address Space Layout Randomization (KASLR).
+      - void (*kernel_func)();  // Function pointer to kernel function
+
+      -  int main() {
+          -   kernel_func = (void *) 0x80000000;  // Fake kernel address
+          -   kernel_func(); // 🚨 Potential crash or privilege escalation
+          -   return 0;
+      -  }
