@@ -42,3 +42,11 @@ mode what are some consequences?
           -   kernel_func(); // 🚨 Potential crash or privilege escalation
           -   return 0;
       -  }
+
+### How does the operating system provide protection? 
+    - Operaring System provides protection by taking different approaches for different component of it.
+    1. It implements 2 modes for cpu to run in: User-Mode and Kernel Mode. So it can restricts user-apps and user-programs from accessing system services and h/w directly.
+    2. Process Boundary: Each process that gets loaded in the RAM is guarded by process boundary, so either the process or any other process can't breach into each other.
+    3. For files on the disk OS implements different level of access control like, read only, write, execute..
+    4. Also, it implements authentication system like, pin, password, sensors to control the access of the system
+    5. OS can implement different users, admin and can group the resources and kind of access different users may have.
