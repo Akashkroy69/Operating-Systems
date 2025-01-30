@@ -1,0 +1,5 @@
+### 1. If we execute kernel programs in the user mode and user programs in kernel 
+mode what are some consequences? 
+
+1. Executing Kernel Programs in User Mode: Kernel programs are designed to run in kernel mode which has all the access to h/w and system services. If you run in user mode. It will not be fully functional and may lead to system failure message, BLUE screen.
+2. Executing User Programs in Kernel Mode: generally user written program doesn't have access to h/w, sensors, kernel program and sytem service program. This is done for security reasons and supervised access to system internals. If you run the user program in kernel mode, it will have all the access. That can cause security breach, unsupervised, unlimited resource uses. Also, generally an user program running user mode has process boundary that seprates it from other programs running in system. When u run the program in kernel mode, it loads the program in the kernel space that doesn't have process boundary and it can access or breach into other processes and resources being used by other processes. Also it will have control over process table residing in the kernel space.
